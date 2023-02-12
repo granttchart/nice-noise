@@ -1,0 +1,9 @@
+{
+  "short_name": "nice noise",
+  "name": "nice noise | limitless noise machine",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#20241f",
+  "background_color": "#20241f"
+}
