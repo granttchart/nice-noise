@@ -4,7 +4,7 @@ import NoiseMachine from './components/NoiseMachine';
 
 function App() {
   return (
-    <div className="app flex flex-col h-screen bg-charcoal">
+    <div className="app flex items-center h-screen bg-charcoal">
       <div className="container">
         <NoiseMachine />
       </div>

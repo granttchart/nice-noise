@@ -14,6 +14,10 @@ module.exports = {
         'violet': '#a15f8b',
         'green': '#459967',
         'white': '#fff'
+      },
+      fontFamily: {
+        sans: 'Quicksand',
+        body: 'Josefin Sans'
       }
     },
   },
