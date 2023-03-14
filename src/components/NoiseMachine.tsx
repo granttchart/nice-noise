@@ -17,7 +17,7 @@ export default function NoiseMachine() {
   }
   
   return (
-		<section className="noise-machine flex flex-wrap align-center justify-center font-sans">
+    <section className="noise-machine flex flex-wrap align-center justify-center font-sans">
       <h1 className="text-3xl font-bold text-periwinkle mb-3">
         nice noise
       </h1>
