@@ -18,6 +18,9 @@ module.exports = {
       fontFamily: {
         sans: 'Quicksand',
         body: 'Josefin Sans'
+      },
+      spacing: {
+        '128': '32rem',
       }
     },
   },

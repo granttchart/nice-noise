@@ -2,9 +2,19 @@
  * Noise utilities
  */
 
-const playWhiteNoise = (audioCtx: AudioContext) => {
-  const bufferSize = 2 * audioCtx.sampleRate;
-  const noiseBuffer = audioCtx.createBuffer(
+const state = {
+  audioCtx: new (window.AudioContext || (window as any).webkitAudioContext)(),
+  get isPlaying() {
+    return this.audioCtx?.state === "running";
+  },
+} as {
+  audioCtx: AudioContext;
+  isPlaying: Boolean;
+};
+
+const connectWhiteNoise = () => {
+  const bufferSize = 2 * state.audioCtx.sampleRate;
+  const noiseBuffer = state.audioCtx.createBuffer(
     1,
     bufferSize,
     state.audioCtx.sampleRate
@@ -16,21 +26,11 @@ const playWhiteNoise = (audioCtx: AudioContext) => {
     output[i] = Math.random() * 2 - 1;
   }
 
-  const whiteNoise = audioCtx.createBufferSource();
+  const whiteNoise = state.audioCtx.createBufferSource();
   whiteNoise.buffer = noiseBuffer;
   whiteNoise.loop = true;
   whiteNoise.start(0);
   whiteNoise.connect(state.audioCtx.destination);
-};
-
-const state = {
-  audioCtx: new (window.AudioContext || (window as any).webkitAudioContext)(),
-  get isPlaying() {
-    return this.audioCtx?.state === "running";
-  },
-} as {
-  audioCtx: AudioContext;
-  isPlaying: Boolean,
 };
 
 export const useNoise = () => ({
@@ -38,7 +38,7 @@ export const useNoise = () => ({
     if (state.isPlaying) {
       state.audioCtx.suspend();
     } else {
-      playWhiteNoise(state.audioCtx);
+      connectWhiteNoise();
       state.audioCtx.resume();
     }
   },
